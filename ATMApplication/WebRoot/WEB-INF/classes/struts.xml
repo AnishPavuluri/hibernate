@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" 
+"http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+<package name="default" extends="struts-default">
+
+<!--<global-results>
+	<result name="Exception">exception.jsp</result>
+</global-results>
+--><global-exception-mappings>
+	<exception-mapping result="Exception" exception="java.lang.Exception"></exception-mapping>
+</global-exception-mappings>
+
+
+<action name="atmAction" class="action.AtmAction">
+<result name="success">home.jsp</result>
+</action>
+
+<action name="balanceEnquiry" class="action.AtmAction" method="balanceEnquiry">
+	<result name="success">balanceenquiry.jsp</result>
+	<result name="error">error.jsp</result>
+</action>
+	<action name="ministatement" class="action.AtmAction" method="toGetMiniStatement">
+		<result name="success">ministatement.jsp</result>
+		<result name="error">error.jsp</result>
+	</action>
+	<action name="fundsTransfer" class="action.AtmAction" method="trasferFunds">
+		<result name="success">success.jsp</result>
+		<result name="error">error.jsp</result>
+	</action>
+	<action name="withDraw" class="action.AtmAction" method="withDraw">
+		<result name="success">success.jsp</result>
+		<result name="error">error.jsp</result>
+	</action>
+	<action name="amountWithDraw" class="action.AtmAction" method="draw">
+		<result name="success">amount.jsp</result>
+	</action>
+	
+	<action name="transfer" class="action.AtmAction" method="transfer">
+		<result name="success">accno_amount.jsp</result>
+	</action>
+	
+</package>
+
+
+</struts>    

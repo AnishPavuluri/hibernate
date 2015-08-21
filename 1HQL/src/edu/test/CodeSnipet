@@ -1,0 +1,103 @@
+4/8/2011
+--------
+1
+----
+String hqlQuary="SELECT COUNT(studentNo),studentName FROM Student GROUP BY StudentName";
+Query query=session.createQuery(hqlQuary);
+List studentList=query.list();
+System.out.println(".No Of Records :"+studentList.size());
+2
+--
+String hqlQuary="UPDATE Student SET studentName=:sName where studentNo=:sNo";
+Query query=session.createQuery(hqlQuary);
+query.setString("sName", "N@IT-U");
+query.setString("sNo", "1");
+int noOfRecords=query.executeUpdate();
+System.out.println(".No Of Records :"+noOfRecords);
+3
+--
+String hqlQuary="DELETE Student WHERE studentName=:sName AND studentNo=:sNo";
+Query query=session.createQuery(hqlQuary);
+query.setString("sName", "N@IT-U");
+query.setString("sNo", "1");
+int noOfRecords=query.executeUpdate();
+System.out.println(".No Of Records :"+noOfRecords);
+4
+--
+String hqlQuary="FROM Student";
+Query query=session.createQuery(hqlQuary);
+Iterator stuIterator=query.iterate();
+System.out.println(".B.Point and check the console");
+while (stuIterator.hasNext()) {
+Student student = (Student) stuIterator.next();
+System.out.println("student No :"+student.getStudentNo());
+System.out.println("student Name :"+student.getStudentName());
+System.out.println(".B.Point and check the console");
+}
+5
+---
+String hqlQuary="FROM Student";
+Query query=session.createQuery(hqlQuary);
+List studentList=query.list();
+System.out.println(".B.Point and check the console");
+Iterator stuIterator=studentList.iterator();
+while (stuIterator.hasNext()) {
+Student student = (Student) stuIterator.next();
+System.out.println("student No :"+student.getStudentNo());
+System.out.println("student Name :"+student.getStudentName());
+System.out.println(".B.Point and check the console");
+}
+6
+---
+String hqlQuery="FROM Student ORDER BY studentNo ASC";
+List studentList=session.createQuery(hqlQuery).list();
+System.out.println(".No of Records :"+studentList.size());
+ 7
+ --
+String hqlQuery="FROM Student ORDER BY studentNo DESC";
+List studentList=session.createQuery(hqlQuery).list();
+System.out.println(".No of Records :"+studentList.size());
+8.1
+--
+String hqlQuery="SELECT MIN(studentNo),MAX(studentNo),AVG(studentNo) FROM Student";
+Query query=session.createQuery(hqlQuery);
+Object[] studentObject=null;
+Iterator iterator=query.iterate();
+if(iterator.hasNext()){
+studentObject=(Object[])iterator.next();
+System.out.println(".MIN(studentNo) :"+studentObject[0]);
+System.out.println(".MAX(studentNo) :"+studentObject[1]);
+System.out.println(".AVG(studentNo) :"+studentObject[2]);
+System.out.println(".Object array contains the following Objects");
+System.out.println(".MIN(studentNo) :"+studentObject[0].getClass().getName());
+System.out.println(".MAX(studentNo) :"+studentObject[1].getClass().getName());
+System.out.println(".AVG(studentNo) :"+studentObject[2].getClass().getName());
+}
+8.2
+---
+String hqlQuery="SELECT MIN(studentNo),MAX(studentNo),AVG(studentNo) FROM Student";
+Query query=session.createQuery(hqlQuery);
+List studentList=query.list();
+System.out.println(".no of records:"+studentList.size());
+8.3
+----
+String hqlQuery="SELECT MIN(studentNo),MAX(studentNo),AVG(studentNo) FROM Student";
+Query query=session.createQuery(hqlQuery);
+Object[] studentObject=(Object[])query.uniqueResult();
+System.out.println(".MIN(studentNo) :"+studentObject[0]);
+System.out.println(".MAX(studentNo) :"+studentObject[1]);
+ystem.out.println(".AVG(studentNo) :"+studentObject[2]);
+9
+---
+String hqlQuery="FROM Student ORDER BY studentNo ASC";
+Query query=session.createQuery(hqlQuery);
+query.setFirstResult(6);
+query.setMaxResults(2);
+List studentList=query.list();
+System.out.println(".No Of records :"+studentList.size());
+10
+---
+String hqlQuery="SELECT COUNT(studentNo),studentName FROM Student GROUP BY studentName";
+Query query=session.createQuery(hqlQuery);
+List studentList=query.list();
+System.out.println(".No Of records :"+studentList.size());

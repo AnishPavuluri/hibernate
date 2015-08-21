@@ -1,0 +1,2 @@
+You can go to Window > Preferences > MyEclipse > Project Capabilities > Struts. From the Struts 1.3 tab, select the jar file and click on "Remove" and then "Apply". This will remove the jar file from all the projects using Struts 1.3. 
+The removed Jar file can be restored by clicking "Restore Defaults". 

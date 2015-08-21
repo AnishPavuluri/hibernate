@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+
+	<package name="default" extends="json-default">
+		<action name="autoComplete" class="action.AutoCompleteAction">
+			<result type="json" name="success">
+				<param name="root">names</param>
+			</result>
+		</action>
+
+	</package>
+	<package name="json" extends="struts-default">
+		<action name="hi" class="hi.Hi">
+			<result name="success">/hi.jsp</result>
+		</action>
+	</package>
+
+
+
+</struts>    

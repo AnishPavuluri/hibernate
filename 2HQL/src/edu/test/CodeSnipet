@@ -1,0 +1,29 @@
+4/8/11
+-------
+1
+--
+Session session=SessionUtil.getSession();
+		Transaction tx=session.beginTransaction();
+		try{
+		String hqlQuery="UPDATE Student SET studentName=:sName WHERE studentNo=?";
+		Query query=session.createQuery(hqlQuery);
+		query.setString("sName", "N@IT-U");
+		query.setString(0,"1");
+		int noOrRecords=query.executeUpdate();
+		System.out.println(".No Of Records :"+noOrRecords);
+2
+--
+String hqlQuery="UPDATE Student SET studentName=? WHERE studentNo=?";
+		Query query=session.createQuery(hqlQuery);
+		query.setString(0, "N@IT-U");
+		query.setString(1,"1");
+		int noOrRecords=query.executeUpdate();
+		System.out.println(".No Of Records :"+noOrRecords);
+3
+--
+String hqlQuery="UPDATE Student SET studentName=? WHERE studentNo=:sNo";
+Query query=session.createQuery(hqlQuery);
+query.setString(0, "N@IT-U");
+query.setString("sNo","1");
+int noOfRecords=query.executeUpdate();
+System.out.println(".No Of Records :"+noOfRecords);
