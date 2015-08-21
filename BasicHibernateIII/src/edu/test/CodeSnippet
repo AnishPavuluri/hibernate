@@ -1,0 +1,10 @@
+3/08/11
+--------
+1.1
+---
+Student student=new Student();
+			student.setStudentName("N@IT");
+			session.save(student);
+1.2
+----
+<generator class="increment" />

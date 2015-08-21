@@ -1,0 +1,149 @@
+3/8/2011
+---------
+1.insert the record
+---------------------
+        Student1 student1=new Student1();
+		student1.setStudentNo("2");
+		student1.setStudentName("N@IT");
+		session.save(student1);
+		transaction.commit();
+		System.out.println("------->success<--------");
+2.to get student name based on ID
+----------------------------------
+Student student=(Student)session.load(Student.class, "1");
+			System.out.println("..student ref:"+student);
+			System.out.println("Brek Point");
+			if(student!=null){
+				System.out.println("Student Name :"+student.getStudentName());
+			}else
+				System.out.println("no Record");
+			transaction.commit();
+3)to save the record
+---------------------
+Student student=new Student();
+			student.setStudentNo("1");
+			student.setStudentName("N@IT");
+			session.save(student);
+			Object identifier=session.save(student);
+			System.out.println("------->"+identifier);	
+4)delete
+---------
+Student student=new Student();
+			student.setStudentNo("1");
+			session.delete(student);
+5)update
+---------
+Student student=new Student();
+			student.setStudentNo("1");
+			//student.setStudentName("N@IT-U");
+			session.update(student);	
+6)load
+-------
+Student student=(Student) session.load(Student.class,"1");
+			System.out.println(".Break point. Check the variables (student)");
+			System.out.println(".student name :"+student.getStudentName());
+			-------------------
+			Student student=(Student) session.load(Student.class,"2");
+			if(student!=null){
+				System.out.println(".student name :"+student.getStudentName());	
+			}else
+				System.out.println("no no record");
+			
+7)get
+------	
+Student student=(Student) session.get(Student.class,"1");
+			System.out.println(".Break point. Check the variables (student)");
+			System.out.println(".student name :"+student.getStudentName());
+			 -------------
+Student student=(Student) session.get(Student.class,"2");
+			if(student!=null){
+				System.out.println(".student name :"+student.getStudentName());	
+			}else
+				System.out.println("no no record");
+				-----------------
+				Student student=new Student();
+			session.get(Student.class,"1");
+			System.out.println(".Break point check the console and variable");
+			System.out.println(".Student Name :"+student.getStudentName());
+			------------------------
+			Student student=(Student) session.get(Student.class,"1");
+			student.setStudentName("N@IT-U");
+			------------------------------
+			Student student=(Student) session.get(Student.class,"1");
+			session.evict(student);
+			session.replicate(student, ReplicationMode.LATEST_VERSION);
+			student.setStudentName("N@IT-U");
+			-------------------------------
+			Student student=(Student) session.get(Student.class,"1");
+			student.setStudentName("N@IT-U");
+			session.flush();
+			student.setStudentName("N@IT-U-U");
+			transaction.commit();
+			---------------------------
+			Student student=(Student) session.get(Student.class,"1");
+			System.out.println(".Student Name :"+student.getStudentName());
+			System.out.println(".Break point update DB value..");
+			session.refresh(student);
+			System.out.println(".Student Name :"+student.getStudentName())
+8)saveOrUpdate
+---------------
+Student student=new Student();
+			student.setStudentNo("1");                      
+			student.setStudentName("N@IT");
+			session.saveOrUpdate(student);
+--------------------------
+Student student=new Student();
+			student.setStudentNo("1");
+			student.setStudentName("N@IT-U");
+			session.saveOrUpdate(student);			
+9)lock
+--------
+Student student=(Student) session.get(Student.class,"1");
+			session.lock(student,LockMode.UPGRADE);
+			System.out.println(".break point update db value");
+10)clear
+----------
+Student student=(Student)session.get(Student.class, "1");
+			session.clear();
+			student.setStudentName("N@IT-U");
+11)contains
+------------
+Student student=(Student)session.get(Student.class, "1");
+			if(session.contains(student)){
+				System.out.println(".contains.");
+			}
+12)getIdentifier(student)
+------------------------
+Student student=(Student)session.get(Student.class, "1");
+			Object identifierValue=session.getIdentifier(student);
+			System.out.println(".Identifier Value. :"+identifierValue);															 
+13)session.isDirty()
+--------------------
+			Student student=(Student) session.get(Student.class,"1");
+			student.setStudentName("N@IT-U");
+			if(session.isDirty()){
+				System.out.println(".synchronization is required.");
+			}
+			else
+				System.out.println(".synchonization is not required.");
+14.1)update
+-------------
+Student student1=(Student) session.get(Student.class, "1");
+			Student student2=new Student();
+			student2.setStudentNo("1");
+			student2.setStudentName("N@IT-U");
+			session.update(student2);
+14.2)merge
+------------
+Student student1=(Student) session.get(Student.class, "1");
+			Student student2=new Student();
+			student2.setStudentNo("1");
+			student2.setStudentName("N@IT-U");
+			session.merge(student2);
+14.3)persist
+--------------
+Student student1=(Student) session.get(Student.class, "1");
+			Student student2=new Student();
+			student2.setStudentNo("1");
+			student2.setStudentName("N@IT-U");
+			session.persist(student2);												
