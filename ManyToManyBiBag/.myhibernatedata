@@ -1,0 +1,24 @@
+#MyEclipse Hibernate Properties
+#Mon Aug 08 22:07:55 IST 2011
+sessionFactoryName=edu.util.SessionUtil
+genBasicCompId=false
+profile=
+daoSFId=
+version=3.3
+jndiPath=
+detectM2M=false
+reStrategyClass=
+detectO2O=false
+springDaoFile=
+useJavaTypes=true
+keyGenerator=sequence
+libInstallFolder=lib
+addLibs2Project=true
+genVersionTag=false
+sessionFactoryId=
+basePersistenceClass=
+genAnnotations=false
+reSettingsFile=/ManyToManyBiBag/hibernate.reveng.xml
+configFile=/ManyToManyBiBag/config/hibernate.cfg.xml
+createConfigFile=true
+addLibs2Classpath=true

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+	<table name="L_LOGINHISTORY" schema="SYSTEM">
+		<primary-key>
+			<key-column name="ID" property="id" />
+		</primary-key>
+		<column name="LOGINTIME" property="date"></column>
+		<column name="USER_ID" property="user"></column>
+	</table>
+	<table name="L_USER" schema="SYSTEM">
+		<primary-key>
+			<key-column name="ID" property="id" />
+		</primary-key>
+		<column name="USERNAME" property="userName"></column>
+		<column name="PASSWORD" property="password"></column>
+	</table>
+</hibernate-reverse-engineering>

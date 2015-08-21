@@ -1,0 +1,93 @@
+5/8/11
+------
+1.1(in NamedQueriesTest.java)
+------------------------------
+Query query=session.getNamedQuery("sqlQuery");
+			List studentList=query.list();
+			System.out.println(". No Of Records :"+studentList.size());
+1.2(in hbm file)
+-----------------
+<sql-query name="sqlQuery">
+<![CDATA[SELECT * FROM STUDENT]]>
+</sql-query>
+2.1
+----
+Query query=session.getNamedQuery("hqlQuery");
+query.setString("sNo","1");
+List studentList=query.list();
+System.out.println(". No Of Records :"+studentList.size());
+2.2
+----
+<query name="hqlQuery">
+<![CDATA[SELECT studentNo,studentName FROM Student WHERE studentNo = :sNo]]>
+</query>
+3.1
+----
+Query query=session.getNamedQuery("hqlQuery");
+query.setString("sNo","1");
+List studentList=query.list();
+System.out.println(". No Of Records :"+studentList.size());
+3.2
+----
+<query name="hqlQuery">
+<![CDATA[FROM Student]]>
+</query>
+4.1
+----
+Query query=session.getNamedQuery("sqlQuery");
+Object object=query.uniqueResult();
+System.out.println(".avg of Student No :"+object);
+System.out.println(". Result type  :"+object.getClass().getName());
+4.2
+----
+<sql-query name="sqlQuery">
+<![CDATA[SELECT AVG(student.SNO) AS avgStudent FROM STUDENT student]]>
+</sql-query>
+5.1
+----
+Query query=session.getNamedQuery("sqlQuery");
+Object object=query.uniqueResult();
+System.out.println(".avg of Student No :"+object);
+System.out.println(". Result type  :"+object.getClass().getName());
+5.2
+---
+<sql-query name="sqlQuery">
+<return-scalar column="avgStudent" type="double"/>
+<![CDATA[SELECT AVG(student.SNO) AS avgStudent FROM STUDENT student]]>
+</sql-query>
+6.1
+----
+Query query=session.getNamedQuery("sqlQuery");
+List studentList=query.list();
+System.out.println(". No Of Records :"+studentList.size());
+6.2
+----
+<sql-query name="sqlQuery">
+<return alias="student" class="edu.model.Student">
+<return-property name="studentNo" column="SNO" />
+<return-property name="studentName">
+<return-column name="SNAME"/>
+</return-property>
+</return>
+<![CDATA[SELECT student.SNO,student.SNAME FROM STUDENT student]]>
+</sql-query>
+7.1
+----
+Query query=session.getNamedQuery("sqlQuery");
+			List studentList=query.list();
+            System.out.println(". No Of Records :"+studentList.size());
+7.2
+----
+<sql-query name="sqlQuery">
+    <![CDATA[SELECT * FROM STUDENT student]]>
+</sql-query>
+8.1
+----
+Query query=session.getNamedQuery("sqlQuery");
+			List studentList=query.list();
+            System.out.println(". No Of Records :"+studentList.size());
+8.2
+---<sql-query name="sqlQuery">
+    <return alias="student" class="edu.model.Student"></return>
+    <![CDATA[SELECT * FROM STUDENT student]]>
+</sql-query>
