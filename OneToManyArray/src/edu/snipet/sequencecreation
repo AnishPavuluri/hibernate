@@ -1,0 +1,7 @@
+create sequence COURSENO_SEQ 
+increment by 1
+start with 1;
+----------------
+create sequence STUDENTNO_SEQ 
+increment by 1
+start with 1;
