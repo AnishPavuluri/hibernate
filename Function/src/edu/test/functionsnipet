@@ -1,0 +1,11 @@
+ create or replace function s_function
+ return
+ sys_refcursor
+ as
+ student_cursor sys_refcursor;
+ begin
+ open student_cursor for
+ select sno,sname from student;
+ return student_cursor;
+ end;
+ /

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="jagu"
+  id="myeclipse.1333642660510"
+  context-root="/jagu"
+  j2ee-spec="5.0"
+  archive="jagu.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+
