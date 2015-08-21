@@ -1,0 +1,174 @@
+4/8/11
+------
+1
+---
+Object object=session.createCriteria(Student.class).setProjection(Projections.sum("studentNo")).uniqueResult();
+			System.out.println(".SUM :"+object);
+1.1
+----
+Criteria criteria=session.createCriteria(Student.class);
+			List studentList=criteria.list();
+			System.out.println(".No Of Records :"+studentList.size());
+1.2
+----
+Criterion criterion=Expression.idEq("1");
+			Criteria criteria=session.createCriteria(Student.class);
+			criteria.add(criterion);
+			Student student=(Student)criteria.uniqueResult();
+			System.out.println(".StudentName :"+student.getStudentName());
+1.3
+----
+Student student=(Student)session.createCriteria(Student.class).add(Expression.idEq("1")).uniqueResult();
+			System.out.println(".StudentName :"+student.getStudentName());
+1.4
+----
+Student student=(Student)session.createCriteria(Student.class).add(Expression.eq("studentNo", "1")).uniqueResult();
+			System.out.println(".StudentName :"+student.getStudentName());
+2.1
+----
+List studentList=session.createCriteria(Student.class).add(Expression.ne("studentNo", "1")).list();
+			System.out.println(".No of Records :"+studentList.size());
+2.2
+----
+List studentList=session.createCriteria(Student.class).add(Expression.gt("studentNo", "1")).list();
+			System.out.println(".No of Records :"+studentList.size());
+2.3
+----
+List studentList=session.createCriteria(Student.class).add(Expression.ge("studentNo", "1")).list();
+			System.out.println(".No of Records :"+studentList.size());
+2.4
+----
+List studentList=session.createCriteria(Student.class).add(Expression.like("studentName", "N@IT")).list();
+			System.out.println(".No of Records :"+studentList.size());
+2.5
+----
+List studentList=session.createCriteria(Student.class).add(Expression.ilike("studentName", "n@it")).list();
+			System.out.println(".No of Records :"+studentList.size());
+2.6
+----
+List studentList=session.createCriteria(Student.class).add(Expression.isNull("studentName")).list();
+			System.out.println(".No of Records :"+studentList.size());
+2.7
+----
+List studentList=session.createCriteria(Student.class).add(Expression.isNotNull("studentName")).list();
+			System.out.println(".No of Records :"+studentList.size());
+2.8
+---
+List studentList=session.createCriteria(Student.class).add(Expression.between("studentNo", "1", "2")).list();
+			System.out.println(".No of Records :"+studentList.size());
+2.9.1
+------
+List studentList=session.createCriteria(Student.class).add(Expression.in("studentNo",new Object[]{ "1", "2"})).list();
+			System.out.println(".No of Records :"+studentList.size());
+2.9.2
+------
+List inputValues=new ArrayList();
+			inputValues.add("1");
+			inputValues.add("2");
+			List studentList=session.createCriteria(Student.class).add(Expression.in("studentNo",inputValues)).list();
+			System.out.println(".No of Records :"+studentList.size());
+2.10.1
+------
+List inputValues = new ArrayList();
+			inputValues.add("1");
+			inputValues.add("2");
+			List studentList = session.createCriteria(Student.class).add(
+					Expression.eq("studentNo", "1")).add(
+					Expression.eq("studentName", "N@IT")).list();
+			System.out.println(".No of Records :" + studentList.size());
+2.10.2
+-------
+Map inputValues = new HashMap();
+			inputValues.put("studentNo","1");
+			inputValues.put("studentName","N@IT");
+			List studentList = session.createCriteria(Student.class).add(
+					Expression.allEq(inputValues)).list();
+			System.out.println(".No of Records :" + studentList.size());
+2.11.1
+-------
+List studentList = session.createCriteria(Student.class).add(
+					Expression.sqlRestriction("{alias}.SNAME like 'N@IT'")).list();
+			System.out.println(".No of Records :" + studentList.size());
+2.11.2
+-------
+List studentList = session.createCriteria(Student.class).add(
+					Expression.sql("{alias}.SNAME like 'N@IT'")).list();
+			System.out.println(".No of Records :" + studentList.size());
+2.12
+----
+List studentList = session.createCriteria(Student.class).add(
+					Expression.eqProperty("studentNo","studentName")).list();
+			System.out.println(".No of Records :" + studentList.size());
+2.13
+-----
+List studentList = session.createCriteria(Student.class).add(
+					Expression.like("studentName","N@IT1")).add(Expression.like("studentName", "N@IT2")).list();
+			System.out.println(".No of Records :" + studentList.size());
+2.14
+-----
+List studentList = session.createCriteria(Student.class).add(
+					Expression.or(Expression.like("studentName","N@IT1"),Expression.like("studentName", "N@IT2"))).list();
+			System.out.println(".No of Records :" + studentList.size());
+2.15
+-----
+List studentList = session.createCriteria(Student.class).add(Expression.like("studentName", "N@IT4")).add(
+					Expression.or(Expression.like("studentName","N@IT1"),Expression.like("studentName", "N@IT2"))).list();
+			System.out.println(".No of Records :" + studentList.size());
+3.1
+----
+Order order=Order.asc("studentNo");
+			Criteria criteria=session.createCriteria(Student.class);
+			criteria.addOrder(order);
+			List studentList=criteria.list();
+			System.out.println(".No of Records :" + studentList.size());
+3.2
+---
+Order order=Order.desc("studentNo");
+			Criteria criteria=session.createCriteria(Student.class);
+			criteria.addOrder(order);
+			List studentList=criteria.list();
+			System.out.println(".No of Records :" + studentList.size());
+4.1
+----
+Projection projection1=Projections.property("studentNo");
+Criteria criteria=session.createCriteria(Student.class);
+criteria.setProjection(projection1);
+List studentList=criteria.list();
+4.2
+----
+Projection projection1=Projections.property("studentNo");
+			Projection projection2=Projections.property("studentName");
+			ProjectionList projectionList=Projections.projectionList();
+			projectionList.add(projection1);
+			projectionList.add(projection2);
+			Criteria criteria=session.createCriteria(Student.class);
+			criteria.setProjection(projectionList);
+			List studentList=criteria.list();
+4.3
+----
+Object noOfRecords=session.createCriteria(Student.class).setProjection(Projections.rowCount()).uniqueResult();
+			System.out.println("No Of Records :"+noOfRecords);
+4.4
+----
+Object[] object=(Object[]) session.createCriteria(Student.class).setProjection(Projections.projectionList().add(
+					Projections.max("studentNo")).add(Projections.min("studentNo")).add(Projections.avg("studentNo"))).uniqueResult();
+			System.out.println(".MAX :"+object[0]);
+			System.out.println(". MIN :"+object[1]);
+			System.out.println(". AVG :"+object[2]);
+4.5
+----
+Object object=session.createCriteria(Student.class).setProjection(Projections.countDistinct("studentName")).uniqueResult();
+			System.out.println(".Distinct name count :"+object);
+4.6
+----
+List distinctList=session.createCriteria(Student.class).setProjection(Projections.distinct(Projections.property("studentName"))).list();
+			System.out.println(".Distinct name count :"+distinctList.size());
+4.7
+----
+List groupByList=session.createCriteria(Student.class).setProjection(Projections.projectionList().add(Projections.avg("studentNo")).
+					add(Projections.groupProperty("studentName"))).list();
+			System.out.println(".Distinct name count :"+groupByList.size());
+4.8
+----
+Object object=session.createCriteria(Student.class).setProjection(Projections.sum("studentNo")).uniqueResult();
+			System.out.println(".SUM :"+object);
